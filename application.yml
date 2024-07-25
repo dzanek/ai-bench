@@ -8,10 +8,10 @@ proxy:
   admin-groups: admin
 
   users:
-  - name: roz
+  - name: mau
     password: password
     groups: admin
-  - name: mew
+  - name: mau2
     password: password
     groups: genusers
 
