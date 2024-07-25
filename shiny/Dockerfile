@@ -1,4 +1,4 @@
-FROM rocker/shiny
+FROM --platform=linux/amd64 rocker/shiny
 
 COPY app.R app.R
 

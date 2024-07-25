@@ -20,14 +20,15 @@ proxy:
     internal-networking: true
 #    container-protocol: https
 
+
   specs:
-  
+
+
   - id: rstudio
-    display-name: RStudio Server
-    description: An Instance of RStudio Server
+    display-name: RStudio 
+    description: An Instance of RStudio 
     container-network: sp-net
-    container-cmd: ["/usr/local/bin/start.sh", "/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--auth-none=1","--auth-minimum-user-id=0", "--auth-validate-users=0", "--www-frame-origin=same"]
-    container-volumes: [ "/home/users/#{proxy.UserId}/:/home/#{proxy.UserId}" ]
+    container-cmd: ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--auth-none=1"]    container-volumes: [ "/home/users/#{proxy.UserId}/:/home/#{proxy.UserId}" ]
     container-image: rstudio
     container-env:
       DISABLE_AUTH: true
@@ -66,14 +67,13 @@ proxy:
     port: 8888
   
   
-  - id: dash_example
-    display-name: Dash mtcars
-    description: Example Dash App
-    container-cmd: ["gunicorn","-b", "0.0.0.0:8050", "app:server"]
-    container-image: example_dash
-    container-network: sp-net
-    port: 8050
-    
+  - id: streamlit
+    display-name: Demo Streamlit app
+    description: Adding another non shiny app to shinyproxy
+    container-cmd: ["streamlit", "run", "app.py", "--server.port=8501"]
+    container-image: shinyproxy-streamlit
+    # Streamlit runs on port 8501
+    port: 8501   
   
   - id: shiny_example
     display-name: Shiny mtcars
